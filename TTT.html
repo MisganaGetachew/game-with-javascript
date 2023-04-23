@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="TTT.css"> -->
+    <title>tic tac toe</title>
+    <style>
+        body{
+    align-self: center;
+    background-color: rgb(242, 239, 239);
+    text-align: center;
+    margin: 5%;
+    
+
+
+}
+/* hr{
+      height: 35vh;
+      width:.1vw;
+      border-width:0;
+      background-color:blue;
+      position: fixed;
+      margin-bottom: 100%;
+      margin-left: 41%;
+     
+} */
+
+#h2{
+    color: black;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+#restart{
+    border-style:none;
+    padding: 5px;
+}
+
+
+button{
+    padding: 3%;
+    margin: 1%;
+    background-color: rgb(147, 158, 158);
+    border-radius: 15%;
+    border-style: none;
+    font-size: larger;
+    font-weight: bold;
+    font-family: cursive;
+    background-size: fixed;
+}
+
+button:active{
+    outline: none;
+}
+
+#first-div {
+    /* display: flex; */
+    
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+    </style>
+</head>
+<body>
+    <div id="first-div">
+    <button id="btn1" onclick="clicked(this)"></button>
+    <button id="btn2" onclick="clicked(this)" ></button>
+    <button id="btn3" onclick="clicked(this)"></button> <br>
+    
+    <button id="btn4" onclick="clicked(this)"></button>
+    <button id="btn5" onclick="clicked(this)"></button>
+    <button id="btn6" onclick="clicked(this)"></button> <br>
+    
+    <button id="btn7" onclick="clicked(this)"></button>
+    <button id="btn8" onclick="clicked(this)"></button>
+    <button id="btn9" onclick="clicked(this)"></button>
+    <h2  id = "h2">TIC TAC TOE</h2>
+    <button id="restart" onclick="start()">restart</button>      
+    
+    
+</div>
+<script>
+
+let btn1 =   document.getElementById('btn1');
+let btn2  =  document.getElementById('btn2');
+let btn3  =  document.getElementById('btn3');
+let btn4  =  document.getElementById('btn4');
+let btn5  =  document.getElementById('btn5');
+let btn6  =  document.getElementById('btn6');
+let btn7  =  document.getElementById('btn7');
+let btn8  =  document.getElementById('btn8');
+let btn9  =  document.getElementById('btn9');
+let h2 = document.getElementById('h2');
+let Xvoice= new Audio("solo.mp3")
+let Yvoice = new Audio("pocket.mp3")
+let drawVoice = new Audio("lift.mp3")
+let winnerVoice = new Audio("duel_event.mp3")
+let restart = document.getElementById('restart');
+// console.log(btn9);
+// btn9.innerHTML = 'x';
+// btn9.in
+var count = 0;
+var temp;
+
+function start (){
+    location.reload();
+}
+
+function clicked( button){
+    count++;
+    if((count%2) == 0){
+        Xvoice.play() 
+        button.innerText = 'X';        
+        button.style.background = '#8458B3';   
+        button.onclick = null;
+    }
+    else{
+        Yvoice.play()
+        button.innerText = 'O'; 
+        button.style.background = '#ffa8B6';
+        button.onclick = null;
+    }
+
+   winner();
+   
+}
+
+
+
+function winner(){
+
+    if((btn1.innerText == 'X' && btn2.innerText == 'X' && btn3.innerText == 'X')
+    || (btn1.innerText == 'X' && btn4.innerText == 'X' && btn7.innerText == 'X')
+    || (btn1.innerText == 'X' && btn5.innerText == 'X' && btn9.innerText == 'X')
+    || (btn2.innerText == 'X' && btn5.innerText == 'X' && btn8.innerText == 'X')
+    || (btn3.innerText == 'X' && btn6.innerText == 'X' && btn9.innerText == 'X')
+    || (btn4.innerText == 'X' && btn5.innerText == 'X' && btn6.innerText == 'X')
+    || (btn7.innerText == 'X' && btn8.innerText == 'X' && btn9.innerText == 'X')
+    || (btn7.innerText == 'X' && btn5.innerText == 'X' && btn3.innerText == 'X')
+    
+    ){
+        h2.style.color = '#8458B3';
+        h2.innerText = "X is the winner! ";
+        winnerVoice.play();
+    
+    }
+    
+    if((btn1.innerText == 'O' && btn2.innerText == 'O' && btn3.innerText == 'O')
+    || (btn1.innerText == 'O' && btn4.innerText == 'O' && btn7.innerText == 'O')
+    || (btn1.innerText == 'O' && btn5.innerText == 'O' && btn9.innerText == 'O')
+    || (btn2.innerText == 'O' && btn5.innerText == 'O' && btn8.innerText == 'O')
+    || (btn3.innerText == 'O' && btn6.innerText == 'O' && btn9.innerText == 'O')
+    || (btn4.innerText == 'O' && btn5.innerText == 'O' && btn6.innerText == 'O')
+    || (btn7.innerText == 'O' && btn8.innerText == 'O' && btn9.innerText == 'O')
+    || (btn7.innerText == 'O' && btn5.innerText == 'O' && btn3.innerText == 'O')
+    
+    ){
+        h2.style.color = '#ffa8B6';
+        h2.style.fontWeight = 'bold'
+        h2.innerText = "O is the winner!";
+        winnerVoice.play();
+       
+    
+    }
+
+   else  if(count == 9){
+    h2.innerText = "the game is draw!";
+    drawVoice.play();
+    
+    }
+
+}
+ 
+
+</script>
+
+</body>
+</html>
